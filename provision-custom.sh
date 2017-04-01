@@ -23,7 +23,13 @@ else
 	ln -s /home/vagrant/.oh-my-zsh/custom/my/aliases.zsh aliases.zsh
 fi
 
+echo "installing htop ..."
+sudo apt-get install -y htop
 
+echo "installing multitail ..."
+sudo apt-get install -y multitail
 
-
+echo "setting timezone ..."
+sudo timedatectl set-timezone Europe/Berlin
+sudo ntpdate -u ntp.ubuntu.com
 

@@ -19,7 +19,7 @@ chmod +x phpbrew
 # Move phpbrew to somewhere can be found by your $PATH
 sudo mv phpbrew /usr/local/bin/phpbrew
 
-sudo -u vagrant phpbrew init
+phpbrew init
 
 if [ ! -d ".phpbrew/bin" ]; then
 	mkdir -p .phpbrew/bin
