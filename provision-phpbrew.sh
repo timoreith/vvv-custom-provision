@@ -53,3 +53,23 @@ cd ini-custom
 if [ ! -f "all-versions.ini" ]; then
     printf "upload_max_filesize=1000M\npost_max_size=1000M" > "all-versions.ini"
 fi
+
+# check for installed version and install latest 7.1 version if nothing was found
+PHPBREW_LIST_RESULT="$(phpbrew list)"
+
+if [[ $PHPBREW_LIST_RESULT = *"Please install"* ]]; then
+  echo "No phpbrew PHP installation found!"
+  LATEST_V7_1="$(phpbrew known | awk '/^7.1:/ {print $2}' | sed 's/,//g')"
+  phpbrew install php-$LATEST_V7_1 +fpm +mysql +iconv +default
+  phpswap $LATEST_V7_1
+  if [ ! -f "/home/vagrant/bin/vagrant_up_custom" ]; then
+  	sudo touch /home/vagrant/bin/vagrant_up_custom
+    sudo printf "echo \"Initialising PHP $LATEST_V7_1\"\nphpswap php-$LATEST_V7_1" > "/home/vagrant/bin/vagrant_up_custom"
+    sudo chmod +x /home/vagrant/bin/vagrant_up_custom
+  fi
+fi
+
+# remove nginx default upstream
+sudo sed -i '/# Upstream to abstract backend connection(s) for PHP./{N;N;N;d}' /etc/nginx/nginx.conf
+sudo service nginx restart
+
