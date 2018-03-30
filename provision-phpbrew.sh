@@ -63,9 +63,14 @@ if [[ $PHPBREW_LIST_RESULT = *"Please install"* ]]; then
   phpbrew install php-$LATEST_V7_1 +fpm +mysql +iconv +default
   phpswap $LATEST_V7_1
   if [ ! -f "/home/vagrant/bin/vagrant_up_custom" ]; then
-  	sudo touch /home/vagrant/bin/vagrant_up_custom
-    sudo printf "echo \"Initialising PHP $LATEST_V7_1\"\nphpswap php-$LATEST_V7_1" > "/home/vagrant/bin/vagrant_up_custom"
-    sudo chmod +x /home/vagrant/bin/vagrant_up_custom
+      LATEST_V7_1="7.1.15"
+      sudo touch /home/vagrant/bin/vagrant_up_custom
+      sudo chmod 777 /home/vagrant/bin/vagrant_up_custom
+      STR1="echo \"Initialising PHP\""
+      STRNL=$'\n'
+      STR2="phpswap $LATEST_V7_1"
+      echo "$STR1$STRNL$STR2" > /home/vagrant/bin/vagrant_up_custom
+      sudo chmod 755 /home/vagrant/bin/vagrant_up_custom
   fi
 fi
 
