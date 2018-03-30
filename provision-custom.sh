@@ -1,8 +1,6 @@
 #!/bin/bash
 bash /vagrant/provision/provision.sh
 
-sudo apt-get install language-pack-de
-
 echo "installing oh-my-zsh ..."
 
 sudo apt-get install -y zsh
@@ -33,3 +31,4 @@ echo "setting timezone ..."
 sudo timedatectl set-timezone Europe/Berlin
 sudo ntpdate -u ntp.ubuntu.com
 
+sudo apt-get install -y language-pack-de
