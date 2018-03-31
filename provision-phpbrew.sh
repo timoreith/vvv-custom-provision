@@ -14,7 +14,8 @@ sudo apt-get install -y gettext libgettextpo-dev libgettextpo0
 sudo apt-get install -y libicu-dev
 sudo apt-get install -y libmhash-dev libmhash2
 sudo apt-get install -y libmcrypt-dev libmcrypt4
-sudo apt-get remove --purge -y apache2
+sudo apt-get remove -y apache2
+sudo apt-get autoremove -y
 
 curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
 chmod +x phpbrew
@@ -24,7 +25,7 @@ sudo mv phpbrew /usr/local/bin/phpbrew
 
 phpbrew init
 
-echo "source ~/.phpbrew/bashrc" >> .bashrc
+echo "source ~/.phpbrew/bashrc" >> .zshrc
 
 if [ ! -d ".phpbrew/bin" ]; then
 	mkdir -p .phpbrew/bin
@@ -68,7 +69,6 @@ if [[ $PHPBREW_LIST_RESULT = *"Please install"* ]]; then
   phpbrew install php-$LATEST_V7_1 +fpm +mysql +iconv +default
   phpswap $LATEST_V7_1
   if [ ! -f "/home/vagrant/bin/vagrant_up_custom" ]; then
-      LATEST_V7_1="7.1.15"
       sudo touch /home/vagrant/bin/vagrant_up_custom
       sudo chmod 777 /home/vagrant/bin/vagrant_up_custom
       STR1="echo \"Initialising PHP\""
