@@ -3,3 +3,4 @@ config.vm.provider :hyperv do |v, override|
 end
 
 config.vm.provision "phpbrew", type: "shell", path: File.join( "provision", "custom", "provision-phpbrew.sh" ), privileged: false, run: "never"
+config.vm.provision "symlinks", type: "shell", path: File.join( "provision", "custom", "provision-symlinks.sh" ), privileged: false, run: "never"
