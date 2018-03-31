@@ -32,5 +32,3 @@ sudo timedatectl set-timezone Europe/Berlin
 sudo ntpdate -u ntp.ubuntu.com
 
 sudo apt-get install -y language-pack-de
-
-bash /vagrant/provision/custom/provision-phpbrew.sh
