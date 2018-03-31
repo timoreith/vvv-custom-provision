@@ -1,3 +1,5 @@
 config.vm.provider :hyperv do |v, override|
      config.vm.synced_folder "/Volumes/sources/", "/vagrant/share/sources",:mount_options => ["dmode=777","fmode=777"]
 end
+
+config.vm.provision "phpbrew", type: "shell", path: File.join( "provision", "custom", "provision-phpbrew.sh" ), privileged: false, run: "never"

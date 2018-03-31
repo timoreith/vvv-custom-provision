@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo "installing phpbrew ..."
+echo "------------------------"
+echo "Provisioning PHPbrew "
+echo "------------------------"
 
 cd /home/vagrant/
 
