@@ -19,6 +19,7 @@ else
 	ln -s /home/vagrant/.oh-my-zsh/custom/my/theme.zsh theme.zsh
 	ln -s /home/vagrant/.oh-my-zsh/custom/my/plugins.zsh plugins.zsh
 	ln -s /home/vagrant/.oh-my-zsh/custom/my/aliases.zsh aliases.zsh
+	ln -s /home/vagrant/.oh-my-zsh/custom/my/phpbrew.zsh phpbrew.zsh
 fi
 
 echo "installing htop ..."

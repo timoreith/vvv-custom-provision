@@ -14,14 +14,17 @@ sudo apt-get install -y gettext libgettextpo-dev libgettextpo0
 sudo apt-get install -y libicu-dev
 sudo apt-get install -y libmhash-dev libmhash2
 sudo apt-get install -y libmcrypt-dev libmcrypt4
+sudo apt-get remove --purge -y apache2
 
 curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
 chmod +x phpbrew
 
-# Move phpbrew to somewhere can be found by your $PATH
+# Move phpbrew to somewhere it can be found by your $PATH
 sudo mv phpbrew /usr/local/bin/phpbrew
 
 phpbrew init
+
+echo "source ~/.phpbrew/bashrc" >> .bashrc
 
 if [ ! -d ".phpbrew/bin" ]; then
 	mkdir -p .phpbrew/bin
