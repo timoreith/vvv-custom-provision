@@ -62,21 +62,23 @@ fi
 
 # check for installed version and install latest 7.1 version if nothing was found
 PHPBREW_LIST_RESULT="$(phpbrew list)"
+LATEST_V7_1="$(phpbrew known | awk '/^7.1:/ {print $2}' | sed 's/,//g')"
 
 if [[ $PHPBREW_LIST_RESULT = *"Please install"* ]]; then
   echo "No phpbrew PHP installation found!"
-  LATEST_V7_1="$(phpbrew known | awk '/^7.1:/ {print $2}' | sed 's/,//g')"
   phpbrew install php-$LATEST_V7_1 +fpm +mysql +iconv +default
   phpswap $LATEST_V7_1
-  if [ ! -f "/home/vagrant/bin/vagrant_up_custom" ]; then
-      sudo touch /home/vagrant/bin/vagrant_up_custom
-      sudo chmod 777 /home/vagrant/bin/vagrant_up_custom
-      STR1="echo \"Initialising PHP\""
-      STRNL=$'\n'
-      STR2="phpswap $LATEST_V7_1"
-      echo "$STR1$STRNL$STR2" > /home/vagrant/bin/vagrant_up_custom
-      sudo chmod 755 /home/vagrant/bin/vagrant_up_custom
-  fi
+  
+fi
+
+if [ ! -f "/home/vagrant/bin/vagrant_up_custom" ]; then
+  sudo touch /home/vagrant/bin/vagrant_up_custom
+  sudo chmod 777 /home/vagrant/bin/vagrant_up_custom
+  STR1="echo \"Initialising PHP\""
+  STRNL=$'\n'
+  STR2="phpswap $LATEST_V7_1"
+  echo "$STR1$STRNL$STR2" > /home/vagrant/bin/vagrant_up_custom
+  sudo chmod 755 /home/vagrant/bin/vagrant_up_custom
 fi
 
 # remove nginx default upstream
