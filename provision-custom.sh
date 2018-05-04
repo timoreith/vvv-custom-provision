@@ -41,6 +41,8 @@ sudo mv phing-latest.phar /usr/local/bin/
 sudo pear channel-update pear.php.net
 sudo pear install -f VersionControl_SVN
 
+sudo apt-get install -y pcregrep
+
 echo "installing JRE"
 # for using yui minimizer
 sudo apt-get update
