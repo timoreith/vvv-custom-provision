@@ -41,6 +41,7 @@ sudo mv phing-latest.phar /usr/local/bin/
 sudo pear channel-update pear.php.net
 sudo pear install -f VersionControl_SVN
 sudo pear install Net_FTP
+sudo pear install Services_Amazon_S3-0.4.0
 
 sudo apt-get install -y pcregrep
 
