@@ -57,7 +57,16 @@ fi
 cd ini-custom
 
 if [ ! -f "all-versions.ini" ]; then
-    printf "upload_max_filesize=1000M\npost_max_size=1000M" > "all-versions.ini"
+    printf "upload_max_filesize=1000M" > "all-versions.ini"
+    echo "post_max_size=1000M" >> all-versions.ini
+    echo "xdebug.remote_enable=On" >> all-versions.ini
+    echo "xdebug.remote_connect_back=On" >> all-versions.ini
+    echo ";xdebug.remote_log=/tmp/xdebug.log" >> all-versions.ini
+    echo "xdebug.profiler_enable_trigger=1" >> all-versions.ini
+    echo "xdebug.profiler_output_dir=/vagrant/share/xdebug/profiler" >> all-versions.ini
+    echo "xdebug.trace_enable_trigger=1" >> all-versions.ini
+    echo "xdebug.trace_format=1" >> all-versions.ini
+    echo "xdebug.trace_output_dir=/vagrant/share/xdebug/trace" >> all-versions.ini
 fi
 
 # check for installed version and install latest 7.1 version if nothing was found
